@@ -745,8 +745,8 @@ void setup() {
     Serial.println("Configportal running");
     if (!wifi_manager_inst.getWiFiSSID()) {
       setNeoPixelColor(150, 0, 0);
-      char err_msg[255] = "Wifi not configured. Connect to ";
-      strcat(err_msg, PROG_NAME);
+      char err_msg[255] = "Wifi not configured. Connect to SSID ";
+      strcat(err_msg, hostname);
       strcat(err_msg, " to configure wifi settings");
       displayError(err_msg, 20);
     } else {
@@ -761,9 +761,6 @@ void setup() {
   ArduinoOTA.setHostname(hostname);
   ArduinoOTA.setPassword(OTA_PASSWORD);
 
-  // Password can be set with it's md5 value as well
-  // MD5(admin) = 21232f297a57a5a743894a0e4a801fc3
-  // ArduinoOTA.setPasswordHash("21232f297a57a5a743894a0e4a801fc3");
 
   ArduinoOTA
     .onStart([]() {
